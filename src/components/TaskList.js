@@ -1,10 +1,18 @@
 import React from "react";
+import Task from "./Task"; 
 
-function TaskList() {
+function TaskList({ tasks, handleDelete }) {
+  const handleDeleteTask =(text) => {
+    handleDelete(tasks.filter((task)=> task.text !== text));
+  };
+
   return (
     <div className="tasks">
-      {/* display a list of tasks using Task component */}
+      {tasks.map((task) => (
+        <Task key={task.text} task={task} handleDelete={handleDeleteTask} />
+      ))}
     </div>
+
   );
 }
 
